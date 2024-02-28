@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\AlternativeController;
 use App\Http\Controllers\Admin\CriteriaRatingController;
 use App\Http\Controllers\Admin\CriteriaWeightController;
@@ -9,7 +11,6 @@ use App\Http\Controllers\Admin\NormalizationController;
 use App\Http\Controllers\Admin\RankController;
 use App\Http\Controllers\HomeController;
 use App\Models\Alternative;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,15 @@ Route::get('normalization', [NormalizationController::class, 'index']);
 
 Route::get('rank', [RankController::class, 'index']);
 
+// Route::get('/admin', [DashboardController::class, 'index'])
+//     ->name('dashboard')
+//     ->middleware(['auth', 'admin']);
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');      
+
+    Route::post('importexcelcriteriaratings', [CriteriaRatingController::class, 'criteriaratingimport'])->name('importexcelcriteriaratings');
+    Route::post('/importexcelcriteriaweights', [CriteriaWeightController::class, 'criteriaweightimport'])->name('importexcelcriteriaweights');
+
 
     Route::resources([
         'alternatives' => AlternativeController::class,
