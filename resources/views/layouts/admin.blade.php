@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>SPK - ITTP Admin</title>
+    <link rel="icon" href="{{ asset('assets/images/logoittp.ico') }}" type="image/x-icon"/>
 
     @include('includes.admin.style')
 
@@ -35,7 +36,7 @@
             </div>
             <!-- End of Main Content -->
 
-            @include('includes.admin.footer')
+            {{-- @include('includes.admin.footer') --}}
 
         </div>
         <!-- End of Content Wrapper -->

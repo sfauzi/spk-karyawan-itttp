@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Arsha Bootstrap Template - Index</title>
+    <title>Login SPK ITP</title>
+    
+    <link rel="icon" href="{{ asset('assets/images/logoittp.ico') }}" type="image/x-icon"/>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -16,7 +18,7 @@
 
 <body>
 
-    @include('includes.navbar')
+    {{-- @include('includes.navbar') --}}
 
    
 

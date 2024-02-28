@@ -110,4 +110,11 @@
     });
 
 </script>
+
+<!-- Script untuk menginisialisasi DataTables -->
+<script>
+    $(document).ready(function() {
+        $('#mytable').DataTable();
+    });
+</script>
 @endsection

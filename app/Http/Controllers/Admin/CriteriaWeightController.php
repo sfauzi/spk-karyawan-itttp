@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\CriteriaWeightImport;
+
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\CriteriaWeight;
 use Illuminate\Http\Request;
 
@@ -15,6 +18,18 @@ class CriteriaWeightController extends Controller
     {
        $criteriaweights = CriteriaWeight::get();
        return view('pages.admin.criteriaweight.index', compact('criteriaweights'))->with('i', 0);
+    }
+
+    public function criteriaweightimport(Request $request) 
+
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataCriteriaWeight', $namaFile);
+        
+        Excel::import(new CriteriaWeightImport, public_path('/DataCriteriaWeight'.$namaFile));
+
+        return redirect('/criteriaweights');
     }
 
     /**

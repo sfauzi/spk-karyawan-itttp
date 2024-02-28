@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\CriteriaRatingImport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\CriteriaRating;
 use App\Models\CriteriaWeight;
 use Illuminate\Http\Request;
@@ -25,6 +27,18 @@ class CriteriaRatingController extends Controller
             'criteriaweights.name as name')
         ->get();
         return view('pages.admin.criteriarating.index', compact('criteriaratings'))->with('i', 0);
+    }
+
+    public function criteriaratingimport(Request $request) 
+
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataCriteriaRating', $namaFile);
+        
+        Excel::import(new CriteriaRatingImport, public_path('/DataCriteriaRating'.$namaFile));
+
+        return redirect('/criteriaratings');
     }
 
     /**
