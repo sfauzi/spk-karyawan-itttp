@@ -14,7 +14,7 @@ class CriteriaWeightController extends Controller
     public function index()
     {
        $criteriaweights = CriteriaWeight::get();
-       return view('pages.admin.criteriaweights.index', compact('criteriaweights'))->with('i', 0);
+       return view('pages.admin.criteriaweight.index', compact('criteriaweights'))->with('i', 0);
     }
 
     /**
@@ -80,8 +80,11 @@ class CriteriaWeightController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CriteriaWeight $criteriaweight)
     {
-        
+        $criteriaweight->delete();
+
+        return redirect()->route('criteriaweights.index')
+            ->with('success', 'Criteria deleted successfully');
     }
 }
