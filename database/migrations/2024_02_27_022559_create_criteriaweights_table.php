@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('type', ['benefit','cost']);
             $table->float('weight');
             $table->string('description', 100);
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

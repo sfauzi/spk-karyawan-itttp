@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('criteria_id')->references('id')->on('criteriawights');
             $table->float('rating');
             $table->string('description');
+            // $table->softDeletes();
             $table->timestamps();
         });
     }
