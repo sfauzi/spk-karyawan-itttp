@@ -4,7 +4,7 @@
     <main id="main">
 
         <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients section-bg">
+        {{-- <section id="clients" class="clients section-bg">
             <div class="container">
 
                 <div class="row" data-aos="zoom-in">
@@ -36,7 +36,7 @@
                 </div>
 
             </div>
-        </section><!-- End Cliens Section -->
+        </section><!-- End Cliens Section --> --}}
 
         <!-- ======= About Us Section ======= -->
         <section id="about" class="about">
@@ -221,7 +221,7 @@
         </section><!-- End Skills Section --> --}}
 
         <!-- ======= Services Section ======= -->
-        <section id="services" class="services section-bg">
+        {{-- <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -270,7 +270,7 @@
                 </div>
 
             </div>
-        </section><!-- End Services Section -->
+        </section><!-- End Services Section --> --}}
 
         <!-- ======= Cta Section ======= -->
         <section id="cta" class="cta">
@@ -278,13 +278,14 @@
 
                 <div class="row">
                     <div class="col-lg-9 text-center text-lg-start">
-                        <h3>Call To Action</h3>
-                        <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum.</p>
+                        <h3>Manual Book</h3>
+                        <p> Kamu bisa akses manual book aplikasi Sistem Pendukung Keputusan <br>
+                            Pemilihan Karyawan Teladan IT Telkom Purwokerto sebelum menggunakan aplikasi <br>
+                            Terima Kasih 😍❤️
+                        </p>
                     </div>
                     <div class="col-lg-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="#">Call To Action</a>
+                        <a class="cta-btn align-middle" href="frontend/assets/file/manualbook.pdf">Download Disini</a>
                     </div>
                 </div>
 
