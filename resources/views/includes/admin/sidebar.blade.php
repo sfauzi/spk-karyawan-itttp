@@ -88,12 +88,14 @@
         <span>Criteria dan Height</span>
       </a>
     </li>
+    
     <li class="nav-item" id="criteriaratings">
       <a class="nav-link" href="{{ url('criteriaratings') }}">
         <i class="fas fa-fw fa-dollar-sign"></i>
         <span>Criteria Rating</span>
       </a>
     </li>
+    
     <li class="nav-item" id="alternatives">
       <a class="nav-link" href="{{ url('alternatives') }}">
         <i class="fas fa-fw fa-images"></i>
@@ -104,6 +106,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
   
+    
     <!-- Nav Item - Decision Matrix -->
     <li class="nav-item" id="decision">
       <a class="nav-link" href="{{ url('decision') }}">
@@ -118,6 +121,7 @@
         <span>Normalization</span>
       </a>
     </li>
+
     <li class="nav-item" id="rank">
       <a class="nav-link" href="{{ url('rank') }}">
         <i class="fas fa-fw fa-dollar-sign"></i>
