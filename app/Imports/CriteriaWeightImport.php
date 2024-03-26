@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\CriteriaWeight;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CriteriaWeightImport implements ToModel
+class CriteriaWeightImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -16,10 +17,10 @@ class CriteriaWeightImport implements ToModel
     {
         return new CriteriaWeight([
             
-                'name' => $row[1],
-                'type' => $row[2],
-                'weight' => $row[3],
-                'description' => $row[4],
+                'name' => $row['name'],
+                'type' => $row['type'],
+                'weight' => $row['weight'],
+                'description' => $row['description'],
            
         ]);
     }

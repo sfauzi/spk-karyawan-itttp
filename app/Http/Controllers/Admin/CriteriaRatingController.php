@@ -35,10 +35,19 @@ class CriteriaRatingController extends Controller
         $file = $request->file('file');
         $namaFile = $file->getClientOriginalName();
         $file->move('DataCriteriaRating', $namaFile);
-        
-        Excel::import(new CriteriaRatingImport, public_path('/DataCriteriaRating'.$namaFile));
 
-        return redirect('/criteriaratings');
+        $filePath = public_path('DataCriteriaRating' . DIRECTORY_SEPARATOR . $namaFile);
+
+        Excel::import(new CriteriaRatingImport(), $filePath);
+
+        return redirect('/criteriratings');
+        // $file = $request->file('file');
+        // $namaFile = $file->getClientOriginalName();
+        // $file->move('DataCriteriaRating', $namaFile);
+        
+        // Excel::import(new CriteriaRatingImport, public_path('/DataCriteriaRating'.$namaFile));
+
+        // return redirect('/criteriaratings');
     }
 
     /**

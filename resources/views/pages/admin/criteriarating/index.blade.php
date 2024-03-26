@@ -45,19 +45,27 @@
                                     </div>
                                 @endif
 
+                                <div class="btn-container mb-3">
+                                    
+                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        <span class="fa fa-file-import"></span> Import
+                                    </button>
+                                </div>
+
 
                                 {{-- <br> --}}
                                 <table id="mytable" class="display nowrap table table-striped table-bordered">
 
                                     <thead>
-                                        <tr>
+                                        {{-- <tr>
                                             <th colspan="5" style="text-align: left;">
                                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                                     data-target="#exampleModal">
                                                     <span class="fa fa-file-import"></span> Import
                                                 </button>
                                             </th>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <th>#</th>
                                             <th>Criteria ID</th>
@@ -115,7 +123,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="{{ url('importexcelcriteriaratings') }}" method="post"
+                                    <form action="{{ route('criteriaratings.import')}}" method="post"
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             {{ csrf_field() }}
@@ -147,7 +155,7 @@
 @endsection
 
 @section('script')
-    <script>
+    {{-- <script>
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
 
@@ -182,12 +190,58 @@
                 ],
             });
         });
-    </script>
+    </script> --}}
 
     <!-- Script untuk menginisialisasi DataTables -->
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#mytable').DataTable();
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#mytable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'copy',
+                        text: '<i class="fas fa-copy"></i> Copy',
+                        className: 'btn btn-secondary',
+                        title: "Data Criteria Rating"
+                    },
+                    {
+                        extend: 'csv',
+                        text: '<i class="fas fa-file-csv"></i> CSV',
+                        className: 'btn btn-secondary',
+                        title: "Data Criteria Rating"
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                        className: 'btn btn-success',
+                        title: "Data Criteria Rating"
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<i class="fas fa-file-pdf"></i> PDF',
+                        className: 'btn btn-danger',
+                        title: "Data Criteria Rating",
+                        download: 'open'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print"></i> Print',
+                        className: 'btn btn-primary',
+                        title: "Data Criteria Rating"
+                    },
+                    {
+                        extend: 'collection',
+                        text: 'Show',
+                        buttons: ['pageLength']
+                    }
+                ],
+                select: true
+            });
         });
     </script>
 @endsection

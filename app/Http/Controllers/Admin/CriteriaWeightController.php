@@ -16,18 +16,23 @@ class CriteriaWeightController extends Controller
      */
     public function index()
     {
-       $criteriaweights = CriteriaWeight::get();
-       return view('pages.admin.criteriaweight.index', compact('criteriaweights'))->with('i', 0);
+        $criteriaweights = CriteriaWeight::get();
+        return view('pages.admin.criteriaweight.index', compact('criteriaweights'))->with('i', 0);
     }
 
-    public function criteriaweightimport(Request $request) 
-
+    public function criteriaweightimport(Request $request)
     {
+        // Excel::import(new CriteriaWeightImport, request()->file('file'));
+
+        // return back();
+
         $file = $request->file('file');
         $namaFile = $file->getClientOriginalName();
         $file->move('DataCriteriaWeight', $namaFile);
-        
-        Excel::import(new CriteriaWeightImport, public_path('/DataCriteriaWeight'.$namaFile));
+
+        $filePath = public_path('DataCriteriaWeight' . DIRECTORY_SEPARATOR . $namaFile);
+
+        Excel::import(new CriteriaWeightImport(), $filePath);
 
         return redirect('/criteriaweights');
     }
@@ -54,8 +59,7 @@ class CriteriaWeightController extends Controller
 
         CriteriaWeight::create($request->all());
 
-        return redirect()->route('criteriaweights.index')
-            ->with('success','Criteria created successfully');
+        return redirect()->route('criteriaweights.index')->with('success', 'Criteria created successfully');
     }
 
     /**
@@ -71,7 +75,8 @@ class CriteriaWeightController extends Controller
      */
     public function edit(string $id)
     {
-       return view('pages.admin.criteriaweight.edit', compact('criteriaweight'));
+        $criteriaweight = CriteriaWeight::findOrFail($id);
+        return view('pages.admin.criteriaweight.edit', compact('criteriaweight'));
     }
 
     /**
@@ -88,8 +93,7 @@ class CriteriaWeightController extends Controller
 
         $criteriaweight->update($request->all());
 
-        return redirect()->route('criteriaweights.index')
-            ->with('success', 'Criteria updated successfully');
+        return redirect()->route('criteriaweights.index')->with('success', 'Criteria updated successfully');
     }
 
     /**
@@ -99,7 +103,6 @@ class CriteriaWeightController extends Controller
     {
         $criteriaweight->delete();
 
-        return redirect()->route('criteriaweights.index')
-            ->with('success', 'Criteria deleted successfully');
+        return redirect()->route('criteriaweights.index')->with('success', 'Criteria deleted successfully');
     }
 }

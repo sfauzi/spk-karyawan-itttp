@@ -40,18 +40,36 @@
                                     </div>
                                 @endif
 
+                                <!-- Button Container -->
+                                <div class="btn-container mb-3">
+                                    {{-- <button id="copyBtn" class="btn btn-secondary"><i class="fas fa-copy"></i>
+                                        Copy</button>
+                                    <button id="csvBtn" class="btn btn-secondary"><i class="fas fa-file-csv"></i>
+                                        CSV</button>
+                                    <button id="excelBtn" class="btn btn-success"><i class="fas fa-file-excel"></i>
+                                        Excel</button>
+                                    <button id="pdfBtn" class="btn btn-danger"><i class="fas fa-file-pdf"></i>
+                                        PDF</button>
+                                    <button id="printBtn" class="btn btn-primary"><i class="fas fa-print"></i>
+                                        Print</button> --}}
+                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        <span class="fa fa-file-import"></span> Import
+                                    </button>
+                                </div>
+
 
                                 {{-- <br> --}}
                                 <table id="mytable" class="display nowrap table table-striped table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th colspan="5" style="text-align: left;">
+                                        {{-- <tr>
+                                            <th colspan="5" style="text-align: right;">
                                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                                     data-target="#exampleModal">
                                                     <span class="fa fa-file-import"></span> Import
                                                 </button>
                                             </th>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
@@ -108,7 +126,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="{{ url('importexcelcriteriaweights') }}" method="POST"
+                                    <form action="{{ route('criteriaweights.import') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
@@ -169,7 +187,7 @@
 @endsection
 
 @section('script')
-    <script>
+    {{-- <script>
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
 
@@ -203,12 +221,69 @@
                 ],
             });
         });
-    </script>
+    </script> --}}
+
+
+
 
     <!-- Script untuk menginisialisasi DataTables -->
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#mytable').DataTable();
+        });
+    </script> --}}
+
+
+
+    {{-- <script>
+        $(document).ready(function() {
+            $('#mytable').DataTable();
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#mytable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'copy',
+                        text: '<i class="fas fa-copy"></i> Copy',
+                        className: 'btn btn-secondary',
+                        title: "Data Criteria Weight"
+                    },
+                    {
+                        extend: 'csv',
+                        text: '<i class="fas fa-file-csv"></i> CSV',
+                        className: 'btn btn-secondary',
+                        title: "Data Criteria Weight"
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                        className: 'btn btn-success',
+                        title: "Data Criteria Weight"
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<i class="fas fa-file-pdf"></i> PDF',
+                        className: 'btn btn-danger',
+                        title: "Data Criteria Weight",
+                        download: 'open'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print"></i> Print',
+                        className: 'btn btn-primary',
+                        title: "Data Criteria Weight"
+                    },
+                    {
+                        extend: 'collection',
+                        text: 'Show',
+                        buttons: ['pageLength']
+                    }
+                ],
+                select: true
+            });
         });
     </script>
 @endsection

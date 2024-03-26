@@ -37,11 +37,13 @@ Route::get('rank', [RankController::class, 'index']);
 // Route::get('/admin', [DashboardController::class, 'index'])
 //     ->name('dashboard')
 //     ->middleware(['auth', 'admin']);
+
+Route::post('criteriaratings-import', [CriteriaRatingController::class, 'criteriaratingimport'])->name('criteriaratings.import');
+Route::post('criteriaweights-import', [CriteriaWeightController::class, 'criteriaweightimport'])->name('criteriaweights.import');
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');      
 
-    Route::post('importexcelcriteriaratings', [CriteriaRatingController::class, 'criteriaratingimport'])->name('importexcelcriteriaratings');
-    Route::post('/importexcelcriteriaweights', [CriteriaWeightController::class, 'criteriaweightimport'])->name('importexcelcriteriaweights');
 
 
     Route::resources([
@@ -50,6 +52,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'criteriaweights' => CriteriaWeightController::class
         ]);
 });
+
+
+
 
 // Auth::routes();
 Route::auth(['verify' => true]);

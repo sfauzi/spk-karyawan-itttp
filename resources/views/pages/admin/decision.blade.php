@@ -132,7 +132,7 @@
 @endsection
 
 @section('script')
-<script>
+{{-- <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
 
@@ -172,12 +172,58 @@
         });
     });
 
-</script>
+</script> --}}
 
 <!-- Script untuk menginisialisasi DataTables -->
-<script>
+{{-- <script>
     $(document).ready(function() {
         $('#mytable').DataTable();
+    });
+</script> --}}
+
+<script>
+    $(document).ready(function() {
+        $('#mytable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    text: '<i class="fas fa-copy"></i> Copy',
+                    className: 'btn btn-secondary',
+                    title: "Data Decision Matrix"
+                },
+                {
+                    extend: 'csv',
+                    text: '<i class="fas fa-file-csv"></i> CSV',
+                    className: 'btn btn-secondary',
+                    title: "Data Decision Matrix"
+                },
+                {
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i> Excel',
+                    className: 'btn btn-success',
+                    title: "Data Decision Matrix"
+                },
+                {
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i> PDF',
+                    className: 'btn btn-danger',
+                    title: "Data Decision Matrix",
+                    download: 'open'
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i> Print',
+                    className: 'btn btn-primary',
+                    title: "Data Decision Matrix"
+                },
+                {
+                    extend: 'collection',
+                    text: 'Show',
+                    buttons: ['pageLength']
+                }
+            ],
+            select: true
+        });
     });
 </script>
 @endsection

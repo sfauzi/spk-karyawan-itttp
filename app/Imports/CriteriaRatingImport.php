@@ -5,8 +5,9 @@ namespace App\Imports;
 use App\Models\CriteriaRating;
 use App\Http\Controllers\Admin\CriteriaRatingController;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CriteriaRatingImport implements ToModel
+class CriteriaRatingImport implements ToModel,WithHeadingRow
 {
     /**
     * @param array $row
@@ -16,9 +17,9 @@ class CriteriaRatingImport implements ToModel
     public function model(array $row)
     {
         return new CriteriaRating([
-            'criteria_id' => $row[1],
-            'rating' => $row[2],
-            'description' => $row[3],
+            'criteria_id' => $row['criteria_id'],
+            'rating' => $row['rating'],
+            'description' => $row['description'],
         ]);
     }
 }
