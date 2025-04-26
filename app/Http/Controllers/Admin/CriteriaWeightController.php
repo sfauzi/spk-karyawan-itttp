@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\CriteriaWeightImport;
-
+use App\Models\AlternativeScore;
+use App\Models\CriteriaRating;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\CriteriaWeight;
 use Illuminate\Http\Request;
@@ -101,6 +102,13 @@ class CriteriaWeightController extends Controller
      */
     public function destroy(CriteriaWeight $criteriaweight)
     {
+        // First delete related records in alternativescores table
+        AlternativeScore::where('criteria_id', $criteriaweight->id)->delete();
+
+        // Delete related records in criteriaratings table
+        CriteriaRating::where('criteria_id', $criteriaweight->id)->delete();
+
+        // Then delete the criteriaweight
         $criteriaweight->delete();
 
         return redirect()->route('criteriaweights.index')->with('success', 'Criteria deleted successfully');
